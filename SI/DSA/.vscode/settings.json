@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.js": "javascript",
+        "system_error": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "memory": "cpp",
+        "string_view": "cpp"
+    }
+}

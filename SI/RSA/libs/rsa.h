@@ -16,17 +16,21 @@ std::string PATH_TO_FOLDER = "/home/kosai/Desktop/7_semester/SI/RSA/";
 
 struct PublicKey
 {
-    t_ullong N;
-    t_ullong E;
+    t_ullong p;
+    t_ullong q;
+    t_ullong g;
+    t_ullong y;
 };
 
 struct PrivateKey
 {
-    t_ullong D;
-    t_ullong N;
+    t_ullong p;
+    t_ullong q;
+    t_ullong g;
+    t_ullong x;
 };
 
-struct RSAKeys
+struct DSAKeys
 {
     PublicKey publicKey;
     PrivateKey privateKey;
@@ -38,34 +42,11 @@ struct RSAKeys
     };
 };
 
-t_ullong calculate_E(t_ullong Phi_N);
-t_ullong calculate_D(t_ullong Phi_N, t_ullong E);
 RSAKeys generateKeys();
 std::vector<t_ullong> encryptMessage(PublicKey publicKey, std::string message);
 std::string decryptMessage(PrivateKey privateKey, std::string message);
 
 /* ================================= Implementation ================================= */
-
-t_ullong calculate_E(t_ullong Phi_N) {
-    t_ullong i = 2;
-    while(gcd(i,Phi_N) != 1){
-        i++;
-    }
-    if(i >= Phi_N){
-        exit(-1);
-    }
-    else{
-        return i;
-    }
-}
-
-t_ullong calculate_D(t_ullong Phi_N, t_ullong E) {
-    t_ullong k = 0;
-    while(((k*Phi_N)+1)%E != 0){
-        k++;
-    }
-    return (((k*Phi_N)+1)/E);
-}
 
 RSAKeys generateKeys() {
     srand((int)time(0));
